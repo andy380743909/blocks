@@ -51,3 +51,12 @@ end
 function love.keyreleased(key)
     Platform:onKeyUp(key)
 end
+
+-- suport Love2D Game Maker iOS App
+function love.gamepadpressed(joystick, button)
+    Platform:gamepadpressed(joystick, button)
+end
+
+function love.gamepadreleased( joystick, button )
+    Platform:gamepadreleased(joystick, button)
+end

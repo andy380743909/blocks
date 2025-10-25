@@ -182,6 +182,37 @@ function Platform:onKeyUp(key)
     end
 end
 
+
+-- Define button → key mapping
+Platform.GAMEPAD_KEY_MAP = {
+    dpup        = "up",
+    dpdown      = "down",
+    dpleft      = "left",
+    dpright     = "right",
+    a           = "space",      -- Drop
+    b           = "f1",         -- Pause
+    x           = "f5",         -- Restart
+    y           = "f3",         -- Show shadow
+    leftshoulder = "f2",        -- Show next
+    rightshoulder = "f4",       -- Toggle music
+    start       = "escape"      -- Quit
+}
+
+function Platform:gamepadpressed(joystick, button)
+    local key = self.GAMEPAD_KEY_MAP[button]
+    if key then
+        self:onKeyDown(key)
+    end
+end
+
+function Platform:gamepadreleased(joystick, button)
+    local key = self.GAMEPAD_KEY_MAP[button]
+    if key then
+        self:onKeyUp(key)
+    end
+end
+
+
 -- Draw a tile from a tetromino
 function Platform:drawTile(x, y, tile, shadow)
     love.graphics.draw(self.m_bmpBlocks, self.m_blocks[shadow][tile], x, y)
